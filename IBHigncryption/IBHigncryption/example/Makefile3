@@ -1,0 +1,34 @@
+
+#
+DEPPATH=../3rd
+INCL=-I $(DEPPATH)/pbc/include   -I ../ibh
+LIBPATH=-L $(DEPPATH)/pbc/lib64 -L ../lib
+KEM_LIB=-lkem_api3
+LIBS=-lssl -lcrypto -lgmp -lpbc $(KEM_LIB) 
+CC=gcc
+#CFLAGS= -Wall  -g
+CFLAGS= -g
+DFLAGS=
+BIN_PATH=../test
+
+all: clean intercept  pairkey  length modify_ct modify_cert
+
+
+
+intercept:
+	$(CC) -o $(BIN_PATH)/$@ intercept.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+pairkey:
+	$(CC) -o $(BIN_PATH)/$@ pairkey.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+length:
+	$(CC) -o $(BIN_PATH)/$@ length.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+modify_ct:
+	$(CC) -o $(BIN_PATH)/$@ modify_ct.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+modify_cert:
+	$(CC) -o $(BIN_PATH)/$@ modify_cert.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+clean:
+	rm -f $(BIN_PATH)/cpucycles $(BIN_PATH)/intercept  $(BIN_PATH)/pairkey  $(BIN_PATH)/length $(BIN_PATH)/modify_ct $(BIN_PATH)/modify_cert

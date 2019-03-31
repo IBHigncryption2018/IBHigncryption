@@ -1,0 +1,38 @@
+
+#
+DEPPATH=../3rd
+INCL=-I $(DEPPATH)/pbc/include   -I ../ibh
+LIBPATH=-L $(DEPPATH)/pbc/lib64 -L ../lib
+KEM_LIB= -lkem_api1
+LIBS=-lssl -lcrypto -lgmp -lpbc $(KEM_LIB)
+CC=gcc -std=c99
+#CFLAGS= -Wall -g
+CFLAGS= -Wall -O3 
+DFLAGS=
+BIN_PATH=.
+
+all: clean key_gen1 enc1 dec1 varlength1 gen_enc_dec1 cpucycles1
+
+key_gen1:
+	$(CC) -o $(BIN_PATH)/$@ key_gen.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+enc1:
+	$(CC) -o $(BIN_PATH)/$@ enc.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+dec1:
+	$(CC) -o $(BIN_PATH)/$@ dec.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+enc_dec1:
+	$(CC) -o $(BIN_PATH)/$@ enc_dec.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+varlength1:
+	$(CC) -o $(BIN_PATH)/$@ varlength.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+gen_enc_dec1:
+	$(CC) -o $(BIN_PATH)/$@ gen_enc_dec.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+cpucycles1:
+	$(CC) -o $(BIN_PATH)/$@ cpucycles.c $(CFLAGS) $(DFLAGS) $(INCL) $(LIBS) $(LIBPATH)
+
+clean:
+	rm -f $(BIN_PATH)/key_gen1 $(BIN_PATH)/enc1 $(BIN_PATH)/dec1 $(BIN_PATH)/varlength1 $(BIN_PATH)/gen_enc_dec1 $(BIN_PATH)/cpucycles1
