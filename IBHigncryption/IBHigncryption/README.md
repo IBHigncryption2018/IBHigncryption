@@ -17,7 +17,6 @@ libibh依赖gmp、pbc和openssl库
 - param linux系统pbc库初始化安全参数文件
 - benchmark 性能测试源码目录 
 - example 功能测试源码目录 
-- bin  Windows系统生成的可执行文件与库的目录 
 - include 动态库api头文件
 - makeall.sh  linux系统编译脚本，编译动态库、功能测试及性能测试程序
 - makeclean.sh  linux系统清理脚本，清理makeall.sh生成的文件
@@ -25,6 +24,7 @@ libibh依赖gmp、pbc和openssl库
 - benchmark/run_benchmark.sh linux系统执行性能测试(耗时)的脚本
 - benchmark/run_test_cpu.sh  linux系统执行性能测试(CPU时钟周期)的脚本
 - benchmark/run_test_varlength.sh linux系统执行性能测试(封装解封不同密钥长度)的脚本
+- An easy example on Linux 一个便于理解的简单的完整实现
 
 ### 源代码功能说明
 #### 目录ibh下文件列表
@@ -56,9 +56,8 @@ libibh依赖gmp、pbc和openssl库
 - modify_cert.c 异常修改证书测试
 
 
-在Windows和Linux下的安装
+在Linux下的安装
 ---------------------------------------
-我们已在Windows和Ubuntu下通过安装和测试
 # Ubuntu下的安装与测试
 
 ## 安装openssl
@@ -160,32 +159,3 @@ tar xvf libgmp-6.1.2.tar.bz2
 	./run_test.sh
 ```
 
-
-# Windows下的安装与测试
-
-第三方库依赖
--------
-第三方依赖库已编译完成，放于bin目录下。分别是libgcc.a、libgmp.a、libmingw32.a、libmingwex.a、 libpbc.a、libgcc_eh.a、 libgcc_s.a,libcrypto-1_1.dll 和 libssl-1_1.dll。
-
-环境依赖
----------
-运行环境需要下载[VC++2010](https://download.microsoft.com/download/9/3/F/93FCF1E7-E6A4-478B-96E7-D4B285925B00/vc_redist.x86.exe)和[VC++2015](https://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe)运行环境支持，如果已经安装了Windows Microsoft Visual Studio系列开发工具，可以不用下载。
-
-编译安装
-------
-使用 Microsoft Visual Studio 2010打开 build/vs2010/lib_ibhigncryption/lib_ibhigncryption.sln、
-build/vs2010/example/IBHigncryption.sln和
-build/vs2010/benchmark/benchmark.sln 。分别编译。
-编译的文件统一生成在bin目录下。
-
-
-运行测试
-------
-1. 进行到bin目录
-2. 双击 run_test.bat
-
-测试实例
-------
-1. 进行到bin目录
-2. 双击 run_case.bat
-3. 在bin目录下生成type1测试实例case1.log和type3测试实例case3.log
